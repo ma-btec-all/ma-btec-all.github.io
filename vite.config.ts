@@ -5,6 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Root-relative base so the site serves cleanly from https://ma-btec-all.github.io/
+  base: "/",
   server: {
     host: "::",
     port: 8080,
