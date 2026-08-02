@@ -1,0 +1,27 @@
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+# ── Production backend = external Supabase project `glfnhbjvxqxhcypjbsdf` ──
+# These build-time vars override the repo .env for the Netlify build only.
+# The Lovable preview keeps using its own .env (Lovable Cloud project).
+[build.environment]
+  VITE_SUPABASE_URL = "https://glfnhbjvxqxhcypjbsdf.supabase.co"
+
+  # ⚠️ REQUIRED — paste the anon / publishable key of project glfnhbjvxqxhcypjbsdf.
+  # Without the correct key, login and all data calls fail on production.
+  VITE_SUPABASE_PUBLISHABLE_KEY = "REPLACE_WITH_glfnhbjvxqxhcypjbsdf_ANON_KEY"
+
+  # ⚠️ REQUIRED — your Google Gemini API key, used for direct client-side chat
+  # (no Edge Function deploy needed). This key is PUBLIC in the shipped bundle,
+  # so restrict it in Google Cloud (HTTP referrer = https://ma-btec-all.netlify.app/*
+  # and API restriction = Generative Language API) before going live.
+  VITE_GEMINI_API_KEY = "REPLACE_WITH_YOUR_GEMINI_API_KEY"
+
+# SPA fallback so deep links work after refresh.
+# NOTE: this only rewrites paths on the Netlify domain; calls to
+# *.supabase.co (auth + functions) go to a different domain and are untouched.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
