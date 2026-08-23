@@ -27,7 +27,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     id: "whatsapp",
     label: "واتساب",
     hint: "0779538251",
-    url: "https://wa.me/962779538251",
+    url: "https://wa.me/962796055637",
     Icon: MessageCircle,
     brand: "#25D366",
   },
