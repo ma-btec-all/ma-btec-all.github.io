@@ -1,13 +1,12 @@
 import { useMemo, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, MessageCircle, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import DeepSpaceBackground from "@/components/DeepSpaceBackground";
-import { SOCIAL_LINKS, type SocialLink } from "@/data/socialLinks";
 
 const SECTION = {
   title: {
@@ -18,6 +17,53 @@ const SECTION = {
     color: "rgba(241, 245, 249, 0.82)",
   },
 };
+
+// تعريف هيكل وسائل التواصل مباشرة داخل الملف
+interface DirectSocialLink {
+  id: string;
+  label: string;
+  hint?: string;
+  url: string;
+  Icon: any;
+  brand: string;
+  lightHover?: boolean;
+}
+
+const DIRECT_SOCIAL_LINKS: DirectSocialLink[] = [
+  {
+    id: "whatsapp",
+    label: "واتساب",
+    hint: "تواصل مباشر عبر الواتساب",
+    url: "https://wa.me/962796055637",
+    Icon: MessageCircle,
+    brand: "#25D366",
+  },
+  {
+    id: "github",
+    label: "جيت هب",
+    hint: "استعرض مشاريعي البرمجية",
+    url: "https://github.com", // استبدله برابط حسابك الفعلي إن وجد
+    Icon: Github,
+    brand: "#f5f5f5",
+    lightHover: true,
+  },
+  {
+    id: "linkedin",
+    label: "لينكد إن",
+    hint: "الملف المهني والمهارات",
+    url: "https://linkedin.com", // استبدله برابط حسابك الفعلي إن وجد
+    Icon: Linkedin,
+    brand: "#0A66C2",
+  },
+  {
+    id: "email",
+    label: "البريد الإلكتروني",
+    hint: "راسلني لأي استفسار",
+    url: "mailto:contact@example.com", // استبدله ببريدك الإلكتروني
+    Icon: Mail,
+    brand: "#EA4335",
+  },
+];
 
 function BulletList({ items }: { items: string[] }) {
   return (
@@ -38,7 +84,7 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-function SocialButton({ link }: { link: SocialLink }) {
+function SocialButton({ link }: { link: DirectSocialLink }) {
   const [hovered, setHovered] = useState(false);
   const Icon = link.Icon;
   const iconColor = hovered
@@ -119,7 +165,7 @@ function SocialButton({ link }: { link: SocialLink }) {
   );
 }
 
-function SocialGrid({ items }: { items: SocialLink[] }) {
+function SocialGrid({ items }: { items: DirectSocialLink[] }) {
   return (
     <div className="mt-6">
       <div
@@ -156,7 +202,7 @@ export default function AboutMePage() {
     setLight({ x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) });
   };
 
-  const socialItems = useMemo(() => SOCIAL_LINKS, []);
+  const socialItems = useMemo(() => DIRECT_SOCIAL_LINKS, []);
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -377,4 +423,3 @@ export default function AboutMePage() {
     </div>
   );
 }
-
