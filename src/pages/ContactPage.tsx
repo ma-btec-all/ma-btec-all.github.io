@@ -120,8 +120,8 @@ export default function ContactPage() {
       {
         id: "whatsapp",
         label: "الواتساب",
-        href: "https://wa.me/962779538251",
-        hint: "(0779538251)",
+        href: "https://wa.me/962796055637",
+        hint: "(0796055637)",
         icon: <MessageCircle className="h-5 w-5" />,
         brand: {
           bg: "linear-gradient(135deg, rgba(22, 163, 74, 0.40), rgba(4, 120, 87, 0.28))",
@@ -219,7 +219,6 @@ export default function ContactPage() {
           icon: "rgba(255, 248, 237, 0.95)",
         },
       },
-
     ],
     [],
   );
@@ -397,4 +396,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
